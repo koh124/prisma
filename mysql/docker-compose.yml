@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+    mysql:
+        # イメージはmysql:5.7を指定する
+        image: mysql:5.7
+        # コンテナ名はmysql
+        container_name: mysql
+        # ローカルとコンテナのポート3306をポートマッピング
+        ports:
+            - 3306:3306
+        # コンテナの環境変数にMYSQLの情報を設定する
+        environment:
+            MYSQL_DATABASE: mydb
+            MYSQL_USER: localhost
+            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root
+            TZ: "Asia/Tokyo"
+        # ローカルのmysql-dataとコンテナの/var/lib/mysqlをボリュームマウント
+        volumes:
+            - ./mysql-data:/var/lib/mysql
